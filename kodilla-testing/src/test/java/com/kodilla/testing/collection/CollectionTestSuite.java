@@ -25,14 +25,14 @@ public class CollectionTestSuite {
     public void testOddNumbersExterminatorEmptyList(){
         //Given
         OddNumbersExterminator exterminator = new OddNumbersExterminator();
-        ArrayList<Integer> numbers = new ArrayList<Integer>();
+        ArrayList<Integer> numbers = new ArrayList<>();
         //When
-        exterminator.exterminate(numbers);
-        boolean result = numbers.isEmpty();
+        ArrayList<Integer> evenNumbers = exterminator.exterminate(numbers);
+        boolean result = evenNumbers.isEmpty();
         System.out.println("Testing empty list");
         //Then
         Assert.assertTrue(result);
-        Assert.assertEquals(0, numbers.size());
+        Assert.assertEquals(0, evenNumbers.size());
     }
     @Test
     public void testOddNumbersExterminatorNormalList(){
@@ -42,9 +42,10 @@ public class CollectionTestSuite {
         numbers.add(2);
         //When
         ArrayList<Integer> evenNumbers = exterminator.exterminate(numbers);
+        boolean result = evenNumbers.contains(2);
         System.out.println("Testing normal list");
         //Then
-        Assert.assertEquals(1, numbers.size());
+        Assert.assertTrue(result);
         Assert.assertEquals(1, evenNumbers.size());
     }
 }
