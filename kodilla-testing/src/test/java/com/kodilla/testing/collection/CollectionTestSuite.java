@@ -40,7 +40,6 @@ public class CollectionTestSuite {
         OddNumbersExterminator exterminator = new OddNumbersExterminator();
         ArrayList<Integer> numbers = new ArrayList<>();
         numbers.add(2);
-
         //When
         ArrayList<Integer> evenNumbers = exterminator.exterminate(numbers);
         System.out.println("Testing normal list");
