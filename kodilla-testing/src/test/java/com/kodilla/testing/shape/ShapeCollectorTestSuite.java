@@ -49,8 +49,7 @@ public class ShapeCollectorTestSuite {
         ShapeCollector shapeCollector = new ShapeCollector();
         shapeCollector.addFigure(triangle);
         //When
-        Shape retrievedShape;
-        retrievedShape = shapeCollector.getFigure(0);
+        Shape retrievedShape = shapeCollector.getFigure(0);
         //Then
         Assert.assertEquals(triangle, retrievedShape);
     }
