@@ -41,7 +41,6 @@ public class ShapeCollectorTestSuite {
         //Then
         Assert.assertTrue(result);
         Assert.assertEquals(true, shapeCollector.getShapesList().isEmpty());
-
     }
     @Test
     public void testGetFigure(){
