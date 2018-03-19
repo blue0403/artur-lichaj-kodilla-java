@@ -1,20 +1,11 @@
 package com.kodilla.testing;
 
-import com.kodilla.testing.user.SimpleUser;
 import com.kodilla.testing.calculator.Calculator;
+import com.kodilla.testing.shape.Circle;
+import com.kodilla.testing.shape.ShapeCollector;
 
 public class TestingMain {
     public static void main(String[] args) {
-        SimpleUser simpleUser = new SimpleUser("theForumUser");
-
-        String result = simpleUser.getUsername();
-
-        if (result.equals("theForumUser")){
-            System.out.println("Test OK");
-        } else {
-            System.out.println("Error!");
-        }
-
         Calculator calculator = new Calculator();
         int resultOfAdding = calculator.addAToB(25, 24);
         int resultOfSubtracting = calculator.subtractAFromB(28, 149);
@@ -30,5 +21,10 @@ public class TestingMain {
         } else {
             System.out.println("Error!");
         }
+
+        ShapeCollector collector = new ShapeCollector();
+        Circle circle = new Circle();
+        collector.addFigure(circle);
+        collector.showFigures();
     }
 }
