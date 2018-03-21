@@ -99,7 +99,6 @@ public class ForumStatisticsTestSuite {
 
         ForumStatistics forumStatistics = new ForumStatistics();
         forumStatistics.calculateAdvStatistics(statisticsMock);
-        forumStatistics.showStatistics(statisticsMock);
 
         //When
         double averageNumberOfPostsPerUser = forumStatistics.getPostsPerUser();

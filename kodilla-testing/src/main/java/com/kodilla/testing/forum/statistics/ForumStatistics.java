@@ -14,16 +14,22 @@ public class ForumStatistics {
         postsNumber = statistics.postsCount();
         commentsNumber = statistics.commentsCount();
 
-        if (usersNumber <= 0){
-            throw new IllegalArgumentException("Users number must be positive!");
-        } else {
+        if (usersNumber > 0){
             postsPerUser = (double) postsNumber / usersNumber;
             commentsPerUser = (double) commentsNumber / usersNumber;
-        }
-        if (postsNumber <=0){
-            throw new IllegalArgumentException("Posts number must be positive " + "to count this statistic!");
+        } else if (usersNumber == 0){
+            postsPerUser = 0;
+            commentsPerUser = 0;
         } else {
+            throw new IllegalArgumentException("Users number must be positive!");
+        }
+
+        if (postsNumber > 0){
             commentsPerPost = (double) commentsNumber / postsNumber;
+        } else if (postsNumber == 0){
+            commentsPerPost = 0;
+        } else {
+            throw new IllegalArgumentException("Posts number must be positive " + "to count this statistic!");
         }
     }
 
