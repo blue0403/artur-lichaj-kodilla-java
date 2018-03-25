@@ -1,10 +1,19 @@
 package com.kodilla.stream;
 
 import com.kodilla.stream.beautifier.PoemBeautifier;
+import com.kodilla.stream.book.Book;
+import com.kodilla.stream.book.BookDirectory;
+import com.kodilla.stream.book.BookDirectoryWithSignature;
+import com.kodilla.stream.book.BookWithSignature;
 import com.kodilla.stream.iterate.NumbersGenerator;
 import com.kodilla.stream.lambda.*;
+import com.kodilla.stream.person.People;
 import com.kodilla.stream.reference.BeautificationTypes;
 import com.kodilla.stream.reference.FunctionalCalculator;
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class StreamMain {
     public static void main(String[] args) {
@@ -64,5 +73,54 @@ public class StreamMain {
         //Task 4
         System.out.println("\nUsing Stream to generate even numbers from 1 to 20");
         NumbersGenerator.generateEven(20);
+
+        //Task 5
+        System.out.println("\nCreating list of People using Stream");
+        People.getList().stream()
+                .map(String::toUpperCase)
+                .filter(s -> s.length() > 11)
+                .map(s -> s.substring(0, s.indexOf(' ') + 2) + ".")
+                .filter(s -> s.substring(0, 1).equals("M"))
+                .forEach(System.out::println);
+
+        //Task 6
+        System.out.println("\nUsing Stream to create books collection");
+        BookDirectory theBookDirectory = new BookDirectory();
+        theBookDirectory.getList().stream()
+                .filter(book -> book.getYearOfPublication() > 2005)
+                .forEach(System.out::println);
+
+        //Task 7
+        System.out.println("\nCreating books collection - using Collectors.toList()");
+        BookDirectory bookDirectory = new BookDirectory();
+        List<Book> theResultListOfBooks = bookDirectory.getList().stream()
+                .filter(book -> book.getYearOfPublication() > 2005)
+                .collect(Collectors.toList());
+
+        System.out.println("# elements: " + theResultListOfBooks.size());
+        theResultListOfBooks.stream()
+                .forEach(System.out::println);
+
+        System.out.println("\nCreating books collection - using Collectors.toMap()");
+        BookDirectoryWithSignature theBookDirectoryWithSignature = new BookDirectoryWithSignature();
+
+        Map<String, BookWithSignature> theResultMapOfBooks = theBookDirectoryWithSignature.getList().stream()
+                .filter(book -> book.getYearOfPublication() > 2005)
+                .collect(Collectors.toMap(BookWithSignature::getSignature, book -> book));
+
+        System.out.println("# elements: " + theResultMapOfBooks.size());
+        theResultMapOfBooks.entrySet().stream()
+                .map(entry -> entry.getKey() + ": " + entry.getValue())
+                .forEach(System.out::println);
+
+        System.out.println("\nCreating books collection - using Collectors.joining()");
+        BookDirectoryWithSignature bookDirectoryWithSignature = new BookDirectoryWithSignature();
+
+        String theResultStringOfBooks = bookDirectoryWithSignature.getList().stream()
+                .filter(book -> book.getYearOfPublication() > 2005)
+                .map(BookWithSignature::toString)
+                .collect(Collectors.joining(",\n","<<",">>"));
+
+        System.out.println(theResultStringOfBooks);
     }
 }
