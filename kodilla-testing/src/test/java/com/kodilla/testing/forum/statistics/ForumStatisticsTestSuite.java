@@ -77,7 +77,7 @@ public class ForumStatisticsTestSuite {
         //Then
         Assert.assertEquals(20, averageNumberOfPostsPerUser, 0);
         Assert.assertEquals(90, averageNumberOfCommentsPerUser, 0);
-        Assert.assertEquals(4, averageNumberOfCommentsPerPost, 5);
+        Assert.assertEquals(4.5, averageNumberOfCommentsPerPost, 0);
     }
     @Test
     //Number of comments = 0
@@ -139,7 +139,7 @@ public class ForumStatisticsTestSuite {
         //Then
         Assert.assertEquals(30, averageNumberOfPostsPerUser, 0);
         Assert.assertEquals(20, averageNumberOfCommentsPerUser, 0);
-        Assert.assertEquals(1, averageNumberOfCommentsPerPost, 5);
+        Assert.assertEquals(0.667, averageNumberOfCommentsPerPost, 0.001);
     }
     @Test
     //Number of comments > Number of posts
