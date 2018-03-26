@@ -5,6 +5,8 @@ import com.kodilla.stream.book.Book;
 import com.kodilla.stream.book.BookDirectory;
 import com.kodilla.stream.book.BookDirectoryWithSignature;
 import com.kodilla.stream.book.BookWithSignature;
+import com.kodilla.stream.forumuser.Forum;
+import com.kodilla.stream.forumuser.ForumUser;
 import com.kodilla.stream.iterate.NumbersGenerator;
 import com.kodilla.stream.lambda.*;
 import com.kodilla.stream.person.People;
@@ -122,5 +124,19 @@ public class StreamMain {
                 .collect(Collectors.joining(",\n","<<",">>"));
 
         System.out.println(theResultStringOfBooks);
+
+        //Task 8
+        System.out.println("\nCreating Map collection of forum users");
+        Forum forum = new Forum();
+
+        Map<Integer, ForumUser> resultMapOfForumUsers = forum.getForumUserList().stream()
+                .filter(forumUser -> forumUser.getSex() == ('M'))
+                .filter(forumUser -> forumUser.getDateOfBirth().getYear() <= 1998)
+                .filter(forumUser -> forumUser.getNumberOfPublishedPosts() >= 1)
+                .collect(Collectors.toMap(ForumUser::getUniqueUserID, forumUser -> forumUser));
+
+        resultMapOfForumUsers.entrySet().stream()
+                .map(entry -> entry.getKey() + ": " + entry.getValue())
+                .forEach(System.out::println);
     }
 }
