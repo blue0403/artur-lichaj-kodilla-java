@@ -35,7 +35,7 @@ public class WorldTestSuite {
         Country nigeria = new Country("Nigeria", new BigDecimal("186000000"));
         Country somalia = new Country("Somalia", new BigDecimal("14320000"));
 
-        Country uSA = new Country("United States", new BigDecimal("325700000"));
+        Country unitedStates = new Country("United States", new BigDecimal("325700000"));
         Country canada = new Country("Canada", new BigDecimal("36290000"));
         Country mexico = new Country("Mexico", new BigDecimal("127500000"));
 
@@ -69,7 +69,7 @@ public class WorldTestSuite {
         africa.addCountry(nigeria);
         africa.addCountry(somalia);
 
-        northAmerica.addCountry(uSA);
+        northAmerica.addCountry(unitedStates);
         northAmerica.addCountry(canada);
         northAmerica.addCountry(mexico);
 

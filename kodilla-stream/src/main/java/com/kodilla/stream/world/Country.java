@@ -28,4 +28,9 @@ public final class Country {
 
         return countryName.equals(country.countryName);
     }
+
+    @Override
+    public int hashCode() {
+        return countryName.hashCode();
+    }
 }
