@@ -13,6 +13,7 @@ import com.kodilla.stream.person.People;
 import com.kodilla.stream.reference.BeautificationTypes;
 import com.kodilla.stream.reference.FunctionalCalculator;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -136,6 +137,20 @@ public class StreamMain {
                 .collect(Collectors.toMap(ForumUser::getUniqueUserID, forumUser -> forumUser));
 
         resultMapOfForumUsers.entrySet().stream()
+                .map(entry -> entry.getKey() + ": " + entry.getValue())
+                .forEach(System.out::println);
+
+        //Task 8 - checking the age condition using LocalDate
+        System.out.println("\nCreating Map collection of forum users");
+        //Forum forum = new Forum();
+
+        Map<Integer, ForumUser> theResultMapOfForumUsers = forum.getForumUserList().stream()
+                .filter(forumUser -> forumUser.getSex() == ('M'))
+                .filter(forumUser -> forumUser.getDateOfBirth().getYear() <= LocalDate.now().minusYears(20).getYear())
+                .filter(forumUser -> forumUser.getNumberOfPublishedPosts() >= 1)
+                .collect(Collectors.toMap(ForumUser::getUniqueUserID, forumUser -> forumUser));
+
+        theResultMapOfForumUsers.entrySet().stream()
                 .map(entry -> entry.getKey() + ": " + entry.getValue())
                 .forEach(System.out::println);
     }
