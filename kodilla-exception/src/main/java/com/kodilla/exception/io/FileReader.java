@@ -18,7 +18,7 @@ public class FileReader {
             fileLines.forEach(System.out::println);
 
         } catch (IOException e) {
-            System.out.println("Something went wrong!");
+            System.out.println("Something went wrong! Error: " + e);
         }
     }
 }
