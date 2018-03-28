@@ -16,6 +16,9 @@ public class FileReader {
 
         } catch (IOException e) {
             System.out.println("Something went wrong! Error: " + e);
+
+        } finally {
+            System.out.println("I am gonna be here... always!");
         }
     }
 }
