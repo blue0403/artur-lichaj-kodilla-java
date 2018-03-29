@@ -1,9 +1,16 @@
 package com.kodilla.exception.test;
 
 public class FirstChallenge {
-    public double divide(double a, double b) throws ArithmeticException {
-        if(b == 0){
-            throw new ArithmeticException();
+    public double divide(int a, int b) throws ArithmeticException {
+
+        try {
+            double result = a / b;
+
+        } catch (ArithmeticException e) {
+             throw new ArithmeticException("Parameter b must be different from zero! Error: " + e);
+
+        } finally {
+            System.out.println("Remember that you can not divide by zero!");
         }
         return a / b;
     }
