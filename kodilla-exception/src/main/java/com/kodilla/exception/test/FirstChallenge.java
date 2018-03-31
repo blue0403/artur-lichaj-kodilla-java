@@ -1,7 +1,7 @@
 package com.kodilla.exception.test;
 
 public class FirstChallenge {
-    public double divide(double a, double b) throws ArithmeticException {
+    public double divide(double a, double b) {
 
         try {
             double result = a / b;
@@ -18,10 +18,6 @@ public class FirstChallenge {
         return a / b;
     }
 
-    /**
-     * This main can throw an ArithmeticException!!!
-     * @param args
-     */
     public static void main(String[] args) {
 
         FirstChallenge firstChallenge = new FirstChallenge();
