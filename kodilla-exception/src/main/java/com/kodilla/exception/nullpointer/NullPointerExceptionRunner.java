@@ -9,3 +9,4 @@ public class NullPointerExceptionRunner {
         messageSender.sendMessageTo(user, "Hello!");
     }
 }
+
