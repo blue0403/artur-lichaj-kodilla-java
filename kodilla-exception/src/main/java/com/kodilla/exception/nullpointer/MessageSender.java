@@ -6,3 +6,4 @@ public class MessageSender {
         System.out.println("Sending message: " + message + " to: " + user.getName());
     }
 }
+
