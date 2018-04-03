@@ -1,4 +1,5 @@
 package com.kodilla.exception.nullpointer;
 
-public class MessageNotSentException {
+public class MessageNotSentException extends Exception {
+
 }
