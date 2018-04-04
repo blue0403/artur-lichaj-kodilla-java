@@ -13,11 +13,11 @@ public class FlightSearchEngine {
         possibleFlights.put("Tokyo", false);
         possibleFlights.put("Sydney", false);
 
-        if (possibleFlights.containsKey(flight.getDepartureAirport()) && possibleFlights.containsValue(true)) {
-            System.out.println("Flight to " + flight.getDepartureAirport() + " is available");
+        if (possibleFlights.containsKey(flight.getArrivalAirport()) && possibleFlights.containsValue(true)) {
+            System.out.println("Flight to " + flight.getArrivalAirport() + " is available");
 
-        } else if (possibleFlights.containsKey(flight.getDepartureAirport()) && possibleFlights.containsValue(false)){
-            System.out.println("Flight to " + flight.getDepartureAirport() + " is temporarily unavailable");
+        } else if (possibleFlights.containsKey(flight.getArrivalAirport()) && possibleFlights.containsValue(false)){
+            System.out.println("Flight to " + flight.getArrivalAirport() + " is temporarily unavailable");
         }
         throw new RouteNotFoundException("Flight to this airport is not available");
     }
