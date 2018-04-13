@@ -1,13 +1,13 @@
 package com.kodilla.good.patterns.food2door;
 
-public class OrderStatusValidator {
+public class OrderValidator {
     private Supplier supplier;
 
-    public OrderStatusValidator(final Supplier supplier) {
+    public OrderValidator(final Supplier supplier) {
         this.supplier = supplier;
     }
 
-    public ProductOrderDTO checkOrderStatus(final ProductOrderRequest productOrderRequest) {
+    public ProductOrderDTO checkOrder(final ProductOrderRequest productOrderRequest) {
         boolean isOrdered = supplier.process(productOrderRequest);
 
         if (isOrdered) {
