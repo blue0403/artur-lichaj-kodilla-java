@@ -23,7 +23,7 @@ public class CalculatorTestSuite {
         double result = calculator.add(2.67, 2.33);
 
         //Then
-        Assert.assertEquals(5.0, result, 0.01);
+        Assert.assertEquals(5.0, result, 0.001);
     }
 
     @Test
@@ -37,6 +37,20 @@ public class CalculatorTestSuite {
         double result = calculator.sub(3.43, 2.33);
 
         //Then
-        Assert.assertEquals(1.10, result, 0.01);
+        Assert.assertEquals(1.10, result, 0.001);
+    }
+
+    @Test
+    public void testCalculationsOfMultiplying() {
+        //Given
+        ApplicationContext context =
+                new AnnotationConfigApplicationContext("com.kodilla.spring.calculator");
+        Calculator calculator = context.getBean(Calculator.class);
+
+        //When
+        double result = calculator.mul(1.10, 1.10);
+
+        //Then
+        Assert.assertEquals(1.21, result, 0.001);
     }
 }
