@@ -53,4 +53,18 @@ public class CalculatorTestSuite {
         //Then
         Assert.assertEquals(1.21, result, 0.001);
     }
+
+    @Test
+    public void testCalculationsOfDividing() {
+        //Given
+        ApplicationContext context =
+                new AnnotationConfigApplicationContext("com.kodilla.spring.calculator");
+        Calculator calculator = context.getBean(Calculator.class);
+
+        //When
+        double result = calculator.div(4.65, 0.15);
+
+        //Then
+        Assert.assertEquals(31.0, result, 0.001);
+    }
 }
