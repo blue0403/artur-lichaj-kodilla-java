@@ -1,9 +1,6 @@
 package com.kodilla.spring;
 
-import com.kodilla.spring.shape.Circle;
 import com.kodilla.spring.shape.Shape;
-import com.kodilla.spring.shape.Square;
-import com.kodilla.spring.shape.Triangle;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +18,7 @@ public class SpringRunnerTestSuite {
 		//Given
 		ApplicationContext context =
 				new AnnotationConfigApplicationContext("com.kodilla.spring");
-		Shape shape = context.getBean(Circle.class);
+		Shape shape = (Shape)context.getBean("circle");
 		//When
 		String name = shape.getShapeName();
 		//Then
@@ -33,7 +30,7 @@ public class SpringRunnerTestSuite {
 		//Given
 		ApplicationContext context =
 				new AnnotationConfigApplicationContext("com.kodilla.spring");
-		Shape shape = context.getBean(Triangle.class);
+		Shape shape = (Shape)context.getBean("triangle");
 		//When
 		String name = shape.getShapeName();
 		//Then
@@ -45,7 +42,7 @@ public class SpringRunnerTestSuite {
 		//Given
 		ApplicationContext context =
 				new AnnotationConfigApplicationContext("com.kodilla.spring");
-		Shape shape = context.getBean(Square.class);
+		Shape shape = (Shape)context.getBean("createSquare");
 		//When
 		String name = shape.getShapeName();
 		//Then
@@ -64,4 +61,3 @@ public class SpringRunnerTestSuite {
         System.out.println("Choosen shape says: " + name);
     }
 }
-
