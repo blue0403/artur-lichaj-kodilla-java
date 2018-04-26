@@ -8,11 +8,10 @@ public class LoggerTestSuite {
     @Test
     public void testGetLastLog() {
         //Given
-        Logger logger = new Logger();
-        logger.log("Initialized StandardEnvironment with PropertySources");
+        Logger.getInstance().log("Initialized StandardEnvironment with PropertySources");
 
         //When
-        String lastLog = logger.getLastLog();
+        String lastLog = Logger.getInstance().getLastLog();
 
         //Then
         Assert.assertEquals("Initialized StandardEnvironment with PropertySources", lastLog);
