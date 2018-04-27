@@ -25,4 +25,20 @@ public class CustomerTestSuite {
         Assert.assertEquals("[Aggressive predictor] Buy stock of XYZ", johnShouldBuy);
         Assert.assertEquals("[Balanced predictor] Buy shared units of Fund XYZ", kodillaShouldBuy);
     }
+
+    @Test
+    public void testIndividualInvestingStrategy() {
+        //Given
+        Customer steven = new IndividualCustomer("Steven Links");
+
+        //When
+        String stevenShouldBuy = steven.predict();
+        System.out.println("Steven should: " + stevenShouldBuy);
+        steven.setBuyingStrategy(new AggressivePredictor());
+        stevenShouldBuy = steven.predict();
+        System.out.println("Steven now should: " + stevenShouldBuy);
+
+        //Then
+        Assert.assertEquals("[Aggressive predictor] Buy stock of XYZ", stevenShouldBuy);
+    }
 }
