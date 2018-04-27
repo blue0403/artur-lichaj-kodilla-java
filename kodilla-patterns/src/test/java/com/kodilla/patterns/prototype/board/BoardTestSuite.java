@@ -1,4 +1,4 @@
-package com.kodilla.patterns.prototype;
+package com.kodilla.patterns.prototype.board;
 
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package com.kodilla.patterns.strategy;
+package com.kodilla.patterns.strategy.customer;
 
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package com.kodilla.patterns.strategy;
+package com.kodilla.patterns.strategy.customer;
 
 public class IndividualCustomer extends Customer {
 
