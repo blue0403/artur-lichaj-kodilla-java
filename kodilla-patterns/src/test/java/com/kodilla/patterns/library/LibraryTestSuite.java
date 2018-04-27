@@ -10,7 +10,7 @@ public class LibraryTestSuite {
     @Test
     public void testGetBooks() {
         //Given
-        Library library = new Library("Collection of books");
+        Library library = new Library("#1# Collection of books");
         Book book1 = new Book("The Green Mile", "Stephen King",
                 LocalDate.of(1996,11,1));
         Book book2 = new Book("Harry Potter and the Sorcerer's Stone", "J. K. Rowling",
@@ -25,7 +25,6 @@ public class LibraryTestSuite {
         Book book8 = new Book("A World Apart", "Gustaw Herling-Grudzinski",
                 LocalDate.of(1951, 9, 1));
 
-        //When
         library.getBooks().add(book1);
         library.getBooks().add(book2);
         library.getBooks().add(book3);
@@ -35,7 +34,33 @@ public class LibraryTestSuite {
         library.getBooks().add(book7);
         library.getBooks().add(book8);
 
+        //making a shallow clone of object library
+        Library clonedLibrary = null;
+        try {
+            clonedLibrary = library.shallowCopy();
+            clonedLibrary.setName("#2# Collection of books");
+        } catch (CloneNotSupportedException e) {
+            System.out.println(e);
+        }
+
+        //making a deep copy of object library
+        Library deepClonedLibrary = null;
+        try {
+            deepClonedLibrary = library.deepCopy();
+            deepClonedLibrary.setName("#3# Collection of books");
+        } catch (CloneNotSupportedException e) {
+            System.out.println(e);
+        }
+
+        //When
+        library.getBooks().remove(book1);
+        library.getBooks().remove(book8);
+
         //Then
-        Assert.assertEquals(8, library.getBooks().size());
+        Assert.assertEquals(6, library.getBooks().size());
+        Assert.assertEquals(6, clonedLibrary.getBooks().size());
+        Assert.assertEquals(8, deepClonedLibrary.getBooks().size());
+        Assert.assertEquals(library.getBooks(), clonedLibrary.getBooks());
+        Assert.assertNotEquals(library.getBooks(), deepClonedLibrary.getBooks());
     }
 }
