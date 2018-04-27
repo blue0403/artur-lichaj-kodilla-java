@@ -25,4 +25,20 @@ public class UserTestSuite {
         Assert.assertEquals("Facebook", tom85Uses);
         Assert.assertEquals("Twitter", mickey13Uses);
     }
+
+    @Test
+    public void testIndividualSharingStrategy() {
+        //Given
+        User blackMirror = new Millenials("blackmirror");
+
+        //When
+        String blackMirrorUses = blackMirror.sharePost();
+        System.out.println("User blackmirror uses " + blackMirrorUses);
+        blackMirror.setSocialPublisher(new FacebookPublisher());
+        blackMirrorUses = blackMirror.sharePost();
+        System.out.println("User blackmirror now uses " + blackMirrorUses);
+
+        //Then
+        Assert.assertEquals("Facebook", blackMirrorUses);
+    }
 }
