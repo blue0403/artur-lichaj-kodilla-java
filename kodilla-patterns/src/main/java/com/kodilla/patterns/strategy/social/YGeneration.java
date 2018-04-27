@@ -2,7 +2,8 @@ package com.kodilla.patterns.strategy.social;
 
 public class YGeneration extends User {
 
-    public YGeneration(String username) {
+    public YGeneration(final String username) {
         super(username);
+        this.socialPublisher = new FacebookPublisher();
     }
 }
