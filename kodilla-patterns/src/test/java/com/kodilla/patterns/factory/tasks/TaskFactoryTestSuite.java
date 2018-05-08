@@ -16,4 +16,16 @@ public class TaskFactoryTestSuite {
         Assert.assertEquals("Shopping task", shoppingTask.getTaskName());
         Assert.assertTrue(shoppingTask.isTaskExecuted());
     }
+
+    @Test
+    public void testFactoryPaintingTask() {
+        //Given
+        TaskFactory factory = new TaskFactory();
+        //When
+        Task paintingTask = factory.makeTask(TaskFactory.PAINTING_TASK);
+        paintingTask.executeTask();
+        //Then
+        Assert.assertEquals("Painting task", paintingTask.getTaskName());
+        Assert.assertTrue(paintingTask.isTaskExecuted());
+    }
 }
