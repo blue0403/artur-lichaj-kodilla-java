@@ -26,4 +26,15 @@ public class ShapeFactoryTestSuite {
         Assert.assertEquals(28.0, square.getCircumference(), 0);
         Assert.assertEquals("The angular square", square.getName());
     }
+
+    @Test
+    public void testFactoryRectangle() {
+        //Given
+        ShapeFactory factory = new ShapeFactory();
+        //When
+        Shape rectangle = factory.makeShape(ShapeFactory.RECTANGLE);
+        //Then
+        Assert.assertEquals(37.50, rectangle.getArea(), 0);
+        Assert.assertEquals("The long rectangle", rectangle.getName());
+    }
 }
