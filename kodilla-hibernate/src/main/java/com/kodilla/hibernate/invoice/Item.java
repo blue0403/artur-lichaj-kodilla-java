@@ -11,6 +11,7 @@ public final class Item {
     private BigDecimal price;
     private int quantity;
     private BigDecimal value;
+    private Product product;
 
     public Item() {
     }
@@ -47,6 +48,12 @@ public final class Item {
         return value;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "PRODUCT_ID")
+    public Product getProduct() {
+        return product;
+    }
+
     private void setId(int id) {
         this.id = id;
     }
@@ -61,5 +68,10 @@ public final class Item {
 
     private void setValue(BigDecimal value) {
         this.value = value;
+    }
+
+    //This setter must be public (to use in tests)
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }
