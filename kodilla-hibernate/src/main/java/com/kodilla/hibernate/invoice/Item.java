@@ -12,6 +12,7 @@ public final class Item {
     private int quantity;
     private BigDecimal value;
     private Product product;
+    private Invoice invoice;
 
     public Item() {
     }
@@ -54,6 +55,12 @@ public final class Item {
         return product;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "INVOICE_ID")
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
     private void setId(int id) {
         this.id = id;
     }
@@ -73,5 +80,10 @@ public final class Item {
     //This setter must be public (to use in tests)
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    //This setter must be public (to use in tests)
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
 }
