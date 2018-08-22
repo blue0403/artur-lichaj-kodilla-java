@@ -5,6 +5,17 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedNativeQuery(
+        name = "Company.retrieveCompanyName",
+        query = "SELECT * FROM COMPANIES" +
+                " WHERE SUBSTR(COMPANY_NAME, 1, 3) = :FIRSTTHREELETTERS",
+        resultClass = Company.class
+)
+@NamedQuery(
+        name = "Company.findName",
+        query = "FROM Company WHERE COMPANY_NAME LIKE CONCAT('%',:NAME,'%')"
+)
+
 @Entity
 @Table(name = "COMPANIES")
 public class Company {

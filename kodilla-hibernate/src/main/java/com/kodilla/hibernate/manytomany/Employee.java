@@ -5,6 +5,17 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedQueries({
+        @NamedQuery(
+                name = "Employee.retrieveEmployeeByLastname",
+                query = "FROM Employee WHERE lastname = :LASTNAME"
+        ),
+        @NamedQuery(
+                name = "Employee.findMatchingName",
+                query = "FROM Employee WHERE lastName LIKE CONCAT('%',:NAME,'%')"
+        )
+})
+
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {
