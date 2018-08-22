@@ -11,8 +11,8 @@ import java.util.List;
                 query = "FROM Employee WHERE lastname = :LASTNAME"
         ),
         @NamedQuery(
-                name = "Employee.findMatchingName",
-                query = "FROM Employee WHERE lastName LIKE CONCAT('%',:NAME,'%')"
+                name = "Employee.findMatchingEmployeeName",
+                query = "FROM Employee WHERE LASTNAME LIKE CONCAT('%', :NAME, '%')"
         )
 })
 

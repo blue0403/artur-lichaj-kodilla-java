@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NamedNativeQuery(
-        name = "Company.retrieveCompanyName",
+        name = "Company.retrieveCompanyByName",
         query = "SELECT * FROM COMPANIES" +
                 " WHERE SUBSTR(COMPANY_NAME, 1, 3) = :FIRSTTHREELETTERS",
         resultClass = Company.class
 )
 @NamedQuery(
-        name = "Company.findName",
-        query = "FROM Company WHERE COMPANY_NAME LIKE CONCAT('%',:NAME,'%')"
+        name = "Company.findMatchingCompanyName",
+        query = "FROM Company WHERE COMPANY_NAME LIKE CONCAT('%', :NAME, '%')"
 )
 
 @Entity

@@ -116,7 +116,7 @@ public class CompanyDaoTestSuite {
         int datenBankId = datenBank.getId();
 
         //When
-        List<Company> companyByName = companyDao.retrieveCompanyName("dat");
+        List<Company> companyByName = companyDao.retrieveCompanyByName("dat");
 
         //Then
         try {
