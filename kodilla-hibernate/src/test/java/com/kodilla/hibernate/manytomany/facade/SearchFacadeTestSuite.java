@@ -1,6 +1,7 @@
 package com.kodilla.hibernate.manytomany.facade;
 
 import com.kodilla.hibernate.manytomany.Company;
+import com.kodilla.hibernate.manytomany.Employee;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,13 +27,13 @@ public class SearchFacadeTestSuite {
         Company softwareMachine = new Company("Software Machine");
         Company greyMatter = new Company("Grey Matter");
 
-        searchFacade.save(dataCenter);
+        searchFacade.saveCompany(dataCenter);
         int dataCenterId = dataCenter.getId();
-        searchFacade.save(datenBank);
+        searchFacade.saveCompany(datenBank);
         int datenBankId = datenBank.getId();
-        searchFacade.save(softwareMachine);
+        searchFacade.saveCompany(softwareMachine);
         int softwareMachineId = softwareMachine.getId();
-        searchFacade.save(greyMatter);
+        searchFacade.saveCompany(greyMatter);
         int greyMatterId = greyMatter.getId();
 
         //When
@@ -48,10 +49,10 @@ public class SearchFacadeTestSuite {
                 Assert.assertEquals(2, foundCompanies.size());
             } finally {
                 //CleanUp
-                searchFacade.delete(dataCenterId);
-                searchFacade.delete(datenBankId);
-                searchFacade.delete(softwareMachineId);
-                searchFacade.delete(greyMatterId);
+                searchFacade.deleteCompany(dataCenterId);
+                searchFacade.deleteCompany(datenBankId);
+                searchFacade.deleteCompany(softwareMachineId);
+                searchFacade.deleteCompany(greyMatterId);
             }
         }
     }
@@ -62,9 +63,9 @@ public class SearchFacadeTestSuite {
         Company softwareMachine = new Company("Software Machine");
         Company greyMatter = new Company("Grey Matter");
 
-        searchFacade.save(softwareMachine);
+        searchFacade.saveCompany(softwareMachine);
         int softwareMachineId = softwareMachine.getId();
-        searchFacade.save(greyMatter);
+        searchFacade.saveCompany(greyMatter);
         int greyMatterId = greyMatter.getId();
 
         //When
@@ -80,9 +81,42 @@ public class SearchFacadeTestSuite {
                 Assert.assertEquals(0, foundCompanies.size());
             } finally {
                 //CleanUp
-                searchFacade.delete(softwareMachineId);
-                searchFacade.delete(greyMatterId);
+                searchFacade.deleteCompany(softwareMachineId);
+                searchFacade.deleteCompany(greyMatterId);
             }
+        }
+    }
+
+    @Test
+    public void testQueryFindMatchingEmployeeNameWithResults() {
+        //Given
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
+        Employee lindaSmith = new Employee("Linda", "Schmith");
+
+        searchFacade.saveEmployee(johnSmith);
+        int johnSmithId = johnSmith.getId();
+        searchFacade.saveEmployee(stephanieClarckson);
+        int stephanieClarcksonId = stephanieClarckson.getId();
+        searchFacade.saveEmployee(lindaSmith);
+        int lindaSmithId = lindaSmith.getId();
+
+        //When
+        List<Employee> foundEmployees = new ArrayList<>();
+        try {
+            foundEmployees = searchFacade.searchForEmployees("mit");
+        } catch (SearchProcessingException e) {
+            //bussines exception - should be handled in real application
+        }
+
+        //Then
+        try {
+            Assert.assertEquals(2, foundEmployees.size());
+        } finally {
+            //CleanUp
+            searchFacade.deleteEmployee(johnSmithId);
+            searchFacade.deleteEmployee(stephanieClarcksonId);
+            searchFacade.deleteEmployee(lindaSmithId);
         }
     }
 }
