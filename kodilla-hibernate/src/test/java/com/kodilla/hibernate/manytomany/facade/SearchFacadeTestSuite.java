@@ -92,14 +92,14 @@ public class SearchFacadeTestSuite {
         //Given
         Employee johnSmith = new Employee("John", "Smith");
         Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
-        Employee lindaSmith = new Employee("Linda", "Schmith");
+        Employee lindaSchmith = new Employee("Linda", "Schmith");
 
         searchFacade.saveEmployee(johnSmith);
         int johnSmithId = johnSmith.getId();
         searchFacade.saveEmployee(stephanieClarckson);
         int stephanieClarcksonId = stephanieClarckson.getId();
-        searchFacade.saveEmployee(lindaSmith);
-        int lindaSmithId = lindaSmith.getId();
+        searchFacade.saveEmployee(lindaSchmith);
+        int lindaSchmithId = lindaSchmith.getId();
 
         //When
         List<Employee> foundEmployees = new ArrayList<>();
@@ -116,7 +116,36 @@ public class SearchFacadeTestSuite {
             //CleanUp
             searchFacade.deleteEmployee(johnSmithId);
             searchFacade.deleteEmployee(stephanieClarcksonId);
-            searchFacade.deleteEmployee(lindaSmithId);
+            searchFacade.deleteEmployee(lindaSchmithId);
+        }
+    }
+
+    @Test
+    public void testQueryFindMatchingEmployeeNameWithNoResults() {
+        //Given
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee lindaSchmith = new Employee("Linda", "Schmith");
+
+        searchFacade.saveEmployee(johnSmith);
+        int johnSmithId = johnSmith.getId();
+        searchFacade.saveEmployee(lindaSchmith);
+        int lindaSchmithId = lindaSchmith.getId();
+
+        //When
+        List<Employee> foundEmployees = new ArrayList<>();
+        try {
+            foundEmployees = searchFacade.searchForEmployees("ABR");
+        } catch (SearchProcessingException e) {
+            //bussines exception - should be handled in real application
+        }
+
+        //Then
+        try {
+            Assert.assertEquals(0, foundEmployees.size());
+        } finally {
+            //CleanUp
+            searchFacade.deleteEmployee(johnSmithId);
+            searchFacade.deleteEmployee(lindaSchmithId);
         }
     }
 }
