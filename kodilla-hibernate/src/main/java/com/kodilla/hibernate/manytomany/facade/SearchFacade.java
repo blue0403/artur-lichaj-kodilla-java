@@ -21,12 +21,20 @@ public class SearchFacade {
     @Autowired
     EmployeeDao employeeDao;
 
-    public void save(Company company) {
+    public void saveCompany(Company company) {
         companyDao.save(company);
     }
 
-    public void delete(int id) {
+    public void saveEmployee(Employee employee) {
+        employeeDao.save(employee);
+    }
+
+    public void deleteCompany(int id) {
         companyDao.delete(id);
+    }
+
+    public void deleteEmployee(int id) {
+        employeeDao.delete(id);
     }
 
     public List<Company> searchForCompanies(String name) throws SearchProcessingException {
