@@ -55,4 +55,34 @@ public class SearchFacadeTestSuite {
             }
         }
     }
+
+    @Test
+    public void testQueryFindMatchingCompanyNameWithNoResults() {
+        //Given
+        Company softwareMachine = new Company("Software Machine");
+        Company greyMatter = new Company("Grey Matter");
+
+        searchFacade.save(softwareMachine);
+        int softwareMachineId = softwareMachine.getId();
+        searchFacade.save(greyMatter);
+        int greyMatterId = greyMatter.getId();
+
+        //When
+        List<Company> foundCompanies = new ArrayList<>();
+        try {
+            foundCompanies = searchFacade.searchForCompanies("SMA");
+        } catch (SearchProcessingException e) {
+            //bussines exception - should be handled in real application
+        } finally {
+
+            //Then
+            try {
+                Assert.assertEquals(0, foundCompanies.size());
+            } finally {
+                //CleanUp
+                searchFacade.delete(softwareMachineId);
+                searchFacade.delete(greyMatterId);
+            }
+        }
+    }
 }
