@@ -94,4 +94,40 @@ public class CompanyDaoTestSuite {
             employeeDao.delete(lindaSmithId);
         }
     }
+
+    @Test
+    public void testQueryRetrieveCompanyName() {
+        //Given
+        Company softwareMachine = new Company("Software Machine");
+        Company dataMaesters = new Company("Data Maesters");
+        Company greyMatter = new Company("Grey Matter");
+        Company dataCenter = new Company("DATACENTER");
+        Company datenBank = new Company("DatenBank");
+
+        companyDao.save(softwareMachine);
+        int softwareMachineId = softwareMachine.getId();
+        companyDao.save(dataMaesters);
+        int dataMaestersId = dataMaesters.getId();
+        companyDao.save(greyMatter);
+        int greyMatterId = greyMatter.getId();
+        companyDao.save(dataCenter);
+        int dataCenterId = dataCenter.getId();
+        companyDao.save(datenBank);
+        int datenBankId = datenBank.getId();
+
+        //When
+        List<Company> companyByName = companyDao.retrieveCompanyName("dat");
+
+        //Then
+        try {
+            Assert.assertEquals(3, companyByName.size());
+        } finally {
+            //CleanUp
+            companyDao.delete(softwareMachineId);
+            companyDao.delete(dataMaestersId);
+            companyDao.delete(greyMatterId);
+            companyDao.delete(dataCenterId);
+            companyDao.delete(datenBankId);
+        }
+    }
 }
